@@ -180,6 +180,51 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8203d736d5216f741b38261727a84df3, type: 3}
+--- !u!1 &158091451
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 158091453}
+  - component: {fileID: 158091452}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &158091452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 158091451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad5be5ee9bd23d34b8bf4fbd08ca299f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  time: 30
+--- !u!4 &158091453
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 158091451}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &210100230
 GameObject:
   m_ObjectHideFlags: 0
@@ -236,10 +281,6 @@ PrefabInstance:
       propertyPath: camara
       value: 
       objectReference: {fileID: 519420031}
-    - target: {fileID: 1102607563149200808, guid: b2275b5aa700caf49b1c5a829391c4ad, type: 3}
-      propertyPath: vidaWisher
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1102607563149200809, guid: b2275b5aa700caf49b1c5a829391c4ad, type: 3}
       propertyPath: m_RootOrder
       value: 2
