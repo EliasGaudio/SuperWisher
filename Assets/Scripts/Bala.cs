@@ -5,6 +5,8 @@ using UnityEngine;
 public class Bala : MonoBehaviour
 {
     [SerializeField] float speed = 5;
+    [SerializeField] int vida = 3;
+    public bool superDisparoCargadoBala;
 
         // Start is called before the first frame update
     void Start()
@@ -20,7 +22,15 @@ public class Bala : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision){
         if (collision.CompareTag("Enemigo")){
             collision.GetComponent<Enemigo>().RecibirDamage();
-            Destroy(gameObject);
+            if (!superDisparoCargadoBala)
+            {
+                Destroy(gameObject);
+            }
+            vida--;
+            if (vida == 0)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

@@ -5,7 +5,19 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    [SerializeField]int time = 30;
+    public int time = 30;
+    public int difficulty = 1;
+    [SerializeField]int puntuacion;
+
+    public int Puntuacion {
+        get => puntuacion;
+        set {
+            puntuacion = value;
+            if(puntuacion % 1000 == 0){
+                difficulty++;
+            }
+        }
+    }
 
     void Awake()
     {

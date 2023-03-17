@@ -6,7 +6,7 @@ public class Wisher : MonoBehaviour
 {
     float h;
     float v;
-    [SerializeField]float speed = 3;
+    public float speed = 3;
     Vector3 moveDirection;
     [SerializeField]Transform mira;
     [SerializeField]Camera camara;
@@ -14,7 +14,10 @@ public class Wisher : MonoBehaviour
     [SerializeField]Transform bala;
     bool cargaArma = true;
     [SerializeField]float velocidadDisparo = 1;
+    [SerializeField]float tiempoInvulnerabilidad = 3;
     [SerializeField]int vidaWisher = 10;
+    bool superDisparoCargado = false;
+    [SerializeField]bool invulnerable = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,12 +45,14 @@ public class Wisher : MonoBehaviour
             cargaArma = false;
             float angle = Mathf.Atan2(direccionMira.y, direccionMira.x) * Mathf.Rad2Deg;
             Quaternion rotacion = Quaternion.AngleAxis(angle, Vector3.forward);
-            Instantiate(bala, transform.position, rotacion);
+            Transform clonBala = Instantiate(bala, transform.position, rotacion);
+            if (superDisparoCargado)
+            {
+                clonBala.GetComponent<Bala>().superDisparoCargadoBala = true;
+            }
             StartCoroutine(Recargar());
         }
-        if (vidaWisher == 0){
-            Destroy(gameObject);
-        }
+        
     }
 
     IEnumerator Recargar(){
@@ -55,7 +60,36 @@ public class Wisher : MonoBehaviour
         cargaArma = true;
     }
 
+    IEnumerator Invulnerabilidad(){
+        yield return new WaitForSeconds(tiempoInvulnerabilidad);
+        invulnerable = false;
+    }
+
     public void RecibirDamageWisher(){
-        vidaWisher--;
+        if (!invulnerable)
+        {
+            vidaWisher--;
+            invulnerable = true;
+            StartCoroutine(Invulnerabilidad());    
+        }
+        
+        if (vidaWisher == 0){
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision){
+        if (collision.CompareTag("PowerUp")){
+            switch (collision.GetComponent<PowerUp>().powerUpType)
+            {
+                case PowerUp.PowerUpType.SuperCadenciaDeFuego:
+                    velocidadDisparo++;
+                    break;
+                case PowerUp.PowerUpType.SuperPoderDeDisparo:
+                    superDisparoCargado = true;
+                    break;
+            }
+            Destroy(collision.gameObject, 0.1f);
+        }
     }
 }
