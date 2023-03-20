@@ -5,10 +5,10 @@ using UnityEngine;
 public class ItemSpawner : MonoBehaviour
 {
     [SerializeField]GameObject checkPointPrefab;
-    [SerializeField]int delaySpawnCheckPoint = 10;
+    [SerializeField]int delaySpawnCheckPoint = 5;
     [SerializeField]int radiusSpawnCheckPoint = 5;
     [SerializeField]GameObject[] powerUpPrefab;
-    [SerializeField]int delaySpawnPowerUp = 10;
+    [SerializeField]int delaySpawnPowerUp = 5;
     [SerializeField]int radiusSpawnPowerUp = 5;
 
 
@@ -22,19 +22,47 @@ public class ItemSpawner : MonoBehaviour
     IEnumerator SpawnCheckPointRoutine(){
         while (true)
         {
-            yield return new WaitForSeconds(delaySpawnCheckPoint);
-            Vector2 randomPosition = Random.insideUnitCircle * radiusSpawnCheckPoint;
-            Instantiate(checkPointPrefab, randomPosition, Quaternion.identity);            
+            if (GameManager.Instance.difficulty > 5)
+            {
+                
+                yield return new WaitForSeconds(delaySpawnPowerUp / (GameManager.Instance.difficulty/5));
+            }
+            else{
+                yield return new WaitForSeconds(delaySpawnPowerUp);
+            }
+            //Vector2 randomPosition = Random.insideUnitCircle * radiusSpawnCheckPoint;
+            //Instantiate(checkPointPrefab, randomPosition, Quaternion.identity);    
+            Instantiate(checkPointPrefab);        
         }
     }
 
     IEnumerator SpawnPowerUpRoutine(){
         while (true)
         {
-            yield return new WaitForSeconds(delaySpawnPowerUp);
-            Vector2 randomPosition = Random.insideUnitCircle * radiusSpawnPowerUp;
-            int random = Random.Range(0, powerUpPrefab.Length);
-            Instantiate(powerUpPrefab[random], randomPosition, Quaternion.identity);            
+            if (GameManager.Instance.difficulty > 5)
+            {
+                
+                yield return new WaitForSeconds(delaySpawnPowerUp / (GameManager.Instance.difficulty/5));
+            }
+            else{
+                yield return new WaitForSeconds(delaySpawnPowerUp);
+            }
+            //Vector2 randomPosition = Random.insideUnitCircle * radiusSpawnPowerUp;
+            float random = Random.Range(0.0f, 1.0f);
+            //int random = Random.Range(0, powerUpPrefab.Length);
+            if (random < 0.1f)
+            {
+                Instantiate(powerUpPrefab[0]);
+            }
+            else
+            {
+                Instantiate(powerUpPrefab[1]);
+            }
+            //Instantiate(powerUpPrefab[random], randomPosition, Quaternion.identity);            
         }
     }
 }
+
+            
+
+            

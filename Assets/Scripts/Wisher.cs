@@ -18,10 +18,20 @@ public class Wisher : MonoBehaviour
     [SerializeField]int vidaWisher = 10;
     bool superDisparoCargado = false;
     [SerializeField]bool invulnerable = false;
+
+    public int VidaWisher {
+        get => vidaWisher;
+        set{
+            vidaWisher = value;
+            UIManager.Instance.UpdateUIVida(vidaWisher);
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
-        
+        UIManager.Instance.UpdateUIVida(vidaWisher);
+        UIManager.Instance.UpdateUICadencia(velocidadDisparo);
+        UIManager.Instance.UpdateUIBalas(superDisparoCargado);
     }
 
     // Update is called once per frame
@@ -68,13 +78,14 @@ public class Wisher : MonoBehaviour
     public void RecibirDamageWisher(){
         if (!invulnerable)
         {
-            vidaWisher--;
+            VidaWisher--;
             invulnerable = true;
             StartCoroutine(Invulnerabilidad());    
         }
         
-        if (vidaWisher == 0){
-            Destroy(gameObject);
+        if (VidaWisher == 0){
+            GameManager.Instance.derrotaBool = true;
+            UIManager.Instance.MostrarDerrota();
         }
     }
 
@@ -84,9 +95,12 @@ public class Wisher : MonoBehaviour
             {
                 case PowerUp.PowerUpType.SuperCadenciaDeFuego:
                     velocidadDisparo++;
+                    UIManager.Instance.UpdateUICadencia(velocidadDisparo);
+        
                     break;
                 case PowerUp.PowerUpType.SuperPoderDeDisparo:
                     superDisparoCargado = true;
+                    UIManager.Instance.UpdateUIBalas(superDisparoCargado);
                     break;
             }
             Destroy(collision.gameObject, 0.1f);

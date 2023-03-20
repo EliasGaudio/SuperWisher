@@ -8,6 +8,7 @@ TagManager:
   - Wisher
   - SpawnPoint
   - PowerUp
+  - ItemSpawnPoint
   layers:
   - Default
   - TransparentFX
