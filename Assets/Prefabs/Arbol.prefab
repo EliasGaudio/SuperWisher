@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6757320269276125514}
   - component: {fileID: 113862234211938321}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Arbol1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4716054487513508730}
   - component: {fileID: 6993462223422482601}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Arbol1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2488806359596949514}
   - component: {fileID: 1986497965878283475}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Arbol1 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -262,7 +262,7 @@ GameObject:
   m_Component:
   - component: {fileID: 425471123128287461}
   - component: {fileID: 6608756078797711099}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Arbol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -324,7 +324,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5798059180285040211}
   - component: {fileID: 7776122925226803295}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Arbol1 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

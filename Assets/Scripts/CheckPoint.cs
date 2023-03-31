@@ -5,6 +5,7 @@ using UnityEngine;
 public class CheckPoint : MonoBehaviour
 {
     [SerializeField] int tiempoExtra = 10;
+    [SerializeField]AudioClip powerUpSonido;
     void Start()
     {
         GameObject[] spawnPoint = GameObject.FindGameObjectsWithTag("ItemSpawnPoint");

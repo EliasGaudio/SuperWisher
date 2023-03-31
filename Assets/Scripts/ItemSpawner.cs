@@ -50,7 +50,7 @@ public class ItemSpawner : MonoBehaviour
             //Vector2 randomPosition = Random.insideUnitCircle * radiusSpawnPowerUp;
             float random = Random.Range(0.0f, 1.0f);
             //int random = Random.Range(0, powerUpPrefab.Length);
-            if (random < 0.1f)
+            if (random < 0.1f && !GameManager.Instance.superDisparoCargadoGameManager)
             {
                 Instantiate(powerUpPrefab[0]);
             }

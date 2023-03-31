@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1098154370611697112}
   - component: {fileID: 5614301880108389452}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Pozo (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1258748426293574304}
   - component: {fileID: 3477243726769979690}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Pozo (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4531559227047329148}
   - component: {fileID: 1509769635046664805}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Pozo (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -262,7 +262,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3616677980170452488}
   - component: {fileID: 8811236375040696399}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Pozo (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -346,7 +346,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1776678798037665300}
   - component: {fileID: 8979789152932340346}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Pozo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -430,7 +430,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2983558377983308638}
   - component: {fileID: 931713293913378503}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Pozo (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -514,7 +514,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4096520259870832004}
   - component: {fileID: 7079002835137774688}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Pozo (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -598,7 +598,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1907415918932959587}
   - component: {fileID: 521902789317915018}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Pozo (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -682,7 +682,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4985312453497199570}
   - component: {fileID: 3240317113408532234}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Pozo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -752,7 +752,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6747262658080784441}
   - component: {fileID: 3194373319512105522}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Pozo (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -836,7 +836,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3280489021961245027}
   - component: {fileID: 281578233713019272}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Pozo (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -920,7 +920,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5394454924515105526}
   - component: {fileID: 8897467928371392723}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Pozo (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1004,7 +1004,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8966574589352876604}
   - component: {fileID: 3208890557060550176}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Pozo (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

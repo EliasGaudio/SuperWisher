@@ -7,10 +7,13 @@ public class Bala : MonoBehaviour
     [SerializeField] float speed = 5;
     [SerializeField] int vida = 3;
     public bool superDisparoCargadoBala;
+    [SerializeField]AudioSource audioSourceBala;
 
         // Start is called before the first frame update
     void Start()
     {
+        audioSourceBala = GetComponent<AudioSource>();
+        audioSourceBala.Play();
         Destroy(gameObject, 5);
     }
     // Update is called once per frame
