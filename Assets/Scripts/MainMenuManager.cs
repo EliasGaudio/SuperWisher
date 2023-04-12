@@ -47,7 +47,11 @@ public class MainMenuManager : MonoBehaviour
 
     void LoadGame(){
         Invoke("PantallaDeCarga", 0.1f);
+        
         StartCoroutine(LoadYourAsyncScene());
+
+        GameManager.Instance.partidaIniciada = true;
+        GameManager.Instance.ComenzarPartida();
     }
 
 
@@ -79,5 +83,6 @@ public class MainMenuManager : MonoBehaviour
         {
             yield return null;
         }
+        
     }
 }

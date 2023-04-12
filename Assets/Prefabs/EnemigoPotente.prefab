@@ -74,7 +74,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96baa164571a0aa40b1bc7a009e0b231, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vida: 3
+  vida: 1
   speed: 5
   velocidadAtaque: 2
   recompensa: 200
@@ -82,6 +82,7 @@ MonoBehaviour:
   angle: 0
   orientacion: 0
   impacto: {fileID: 8300000, guid: de9e33dbe81a91342af9c9c7fdbd5680, type: 3}
+  audioSourceEnemigo: {fileID: 0}
 --- !u!50 &-893471484240759636
 Rigidbody2D:
   serializedVersion: 4

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro; 
+
 
 public class GameManager : MonoBehaviour
 {
@@ -14,6 +16,7 @@ public class GameManager : MonoBehaviour
     public int vidaWisherGameManager = 10;
     public float velocidadDisparoGameManager = 1;
     public bool superDisparoCargadoGameManager = false;
+    public bool partidaIniciada = false;
 
 
     public int Puntuacion {
@@ -21,7 +24,7 @@ public class GameManager : MonoBehaviour
         set {
             puntuacion = value;
             UIManager.Instance.UpdateUIPuntuacion(puntuacion);
-            if(puntuacion % 2000 == 0){
+            if(puntuacion % (2000/GlobalDifficulty) == 0){
                 difficulty++;
             }
         }
@@ -40,13 +43,24 @@ public class GameManager : MonoBehaviour
 
     }
     private void Start(){
-        StartCoroutine(CountdownRoutine());
+        
 
         
     }
 
+    public void ComenzarPartida(){
+        StartCoroutine(CountdownRoutine());
+    }
+
 
     IEnumerator CountdownRoutine(){
+
+
+
+        yield return new WaitForSeconds(1); //Depresion absoluta, horror, nadie deberia ver nunca esta linea de codigo
+        
+        
+        
         UIManager.Instance.UpdateUITiempo(time);
         while (time > 0)
         {
@@ -79,8 +93,14 @@ public class GameManager : MonoBehaviour
         Invoke("CargarSegundoNivel", 0.1f);
     }
     void CargarPrimerNivel(){
+        time = 30;
+        difficulty = 1;
+        derrotaBool = false; 
+        puntuacion = 0;
+        vidaWisherGameManager = 10;
+        velocidadDisparoGameManager = 1;
+        superDisparoCargadoGameManager = false;
         SceneManager.LoadScene("Juego");
-        Destroy(gameObject);
     }
 
     void ReiniciarEscena(){
@@ -100,6 +120,12 @@ public class GameManager : MonoBehaviour
     void CargarSegundoNivel(){
         SceneManager.LoadScene("Juego2");
     }
+
+    public void DropdownDificultadGlobal(){
+        GameObject a = GameObject.FindGameObjectWithTag("DificultadGlobalDropdown");
+        GlobalDifficulty = a.GetComponent<TMP_Dropdown>().value + 1;
+    }
+
 
     public IEnumerator CargarXNivelAsync(string NombreNivel){
 

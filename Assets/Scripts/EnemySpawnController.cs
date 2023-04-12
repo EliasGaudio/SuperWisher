@@ -11,7 +11,7 @@ public class EnemySpawnController : MonoBehaviour
     void Start()
     {
         StartCoroutine(SpawnerEnemigo());
-        
+        StartCoroutine(SpawnerEnemigoQueDispara());
     }
 
     // Update is called once per frame
@@ -24,8 +24,7 @@ public class EnemySpawnController : MonoBehaviour
         {
             yield return new WaitForSeconds(1/(velocidadSpawn * GameManager.Instance.difficulty/2));
             float random = Random.Range(0.0f, 1.0f);
-
-            if (random < GameManager.Instance.difficulty * 0.1f)
+            if (random < (GameManager.Instance.difficulty - 2) * 0.05f)
             {
                 Instantiate(prefabEnemigo[0]);
             }
@@ -33,6 +32,14 @@ public class EnemySpawnController : MonoBehaviour
             {
                 Instantiate(prefabEnemigo[1]);
             }
+
+        }
+    }
+    IEnumerator SpawnerEnemigoQueDispara(){
+        while (true)
+        {
+            yield return new WaitForSeconds(5/(velocidadSpawn * GameManager.Instance.difficulty/2));
+            Instantiate(prefabEnemigo[2]);
         }
     }
 }

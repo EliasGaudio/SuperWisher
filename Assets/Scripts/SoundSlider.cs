@@ -14,18 +14,16 @@ public class SoundSlider : MonoBehaviour
     }
     public AudioMixer mixer;
     public string volumeName;
-    float valor;
+    [SerializeField]float valor;
     //float volume;
     void Start()
     {
-
-
         mixer.GetFloat(volumeName, out valor);
-        scrollbar.value = valor / 20f;
+        scrollbar.value = (valor + 80 )/ 100;
     }
 
     public void UpdateValueOnChange(){
 
-        mixer.SetFloat(volumeName, Mathf.Log(scrollbar.value + 0.00001f) * 20f);
+        mixer.SetFloat(volumeName, Mathf.Log(scrollbar.value + 0.01f) * 20f);
     }
 }

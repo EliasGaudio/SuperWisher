@@ -23,7 +23,7 @@ public class Bala : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D collision){
-        if (collision.CompareTag("Enemigo")){
+        if (collision.CompareTag("Enemigo") && !gameObject.CompareTag("BalaMala")){
             collision.GetComponent<Enemigo>().RecibirDamage();
             if (!superDisparoCargadoBala)
             {
@@ -35,5 +35,11 @@ public class Bala : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+
+        if (collision.CompareTag("Wisher") && gameObject.CompareTag("BalaMala"))
+        {
+            collision.GetComponent<Wisher>().RecibirDamageWisher();
+        }
+
     }
 }

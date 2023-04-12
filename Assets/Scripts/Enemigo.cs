@@ -11,10 +11,13 @@ public class Enemigo : MonoBehaviour
     [SerializeField]float velocidadAtaque = 1;
     [SerializeField]int recompensa = 100;
     [SerializeField] Animator anim2;
+    [SerializeField]bool dispara = false;
     [SerializeField]float angle;
+    [SerializeField]float angle2;
     [SerializeField]int orientacion = 0;
     [SerializeField]AudioClip impacto;
     [SerializeField]AudioSource audioSourceEnemigo;
+    [SerializeField] GameObject enemigoBala;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +26,9 @@ public class Enemigo : MonoBehaviour
         GameObject[] spawnPoint = GameObject.FindGameObjectsWithTag("SpawnPoint");
         int randomSpawnPoint = Random.Range(0, spawnPoint.Length);
         transform.position = spawnPoint[randomSpawnPoint].transform.position;
+        if (dispara) {
+            StartCoroutine(Disparar());
+        }
     }
         // Update is called once per frame
     void Update()
@@ -31,6 +37,7 @@ public class Enemigo : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+        
         Vector2 direccion = wisher.position - transform.position;
         //transform.position += (Vector3)direccion * Time.deltaTime * speed;
         transform.position = Vector3.MoveTowards(transform.position, wisher.position, speed * Time.deltaTime);
@@ -80,5 +87,24 @@ public class Enemigo : MonoBehaviour
     IEnumerator RecargarMelee(){
         yield return new WaitForSeconds(1/velocidadAtaque);
         ataqueListo = true;
+    }
+    
+    IEnumerator Disparar(){
+        while (true)
+        {
+            yield return new WaitForSeconds(Random.Range(2.0f, 3.0f));
+
+            Vector2 direccion = wisher.position - transform.position;
+            //transform.position += (Vector3)direccion * Time.deltaTime * speed;
+            transform.position = Vector3.MoveTowards(transform.position, wisher.position, speed * Time.deltaTime);
+            Vector2 directionUnit = (Vector3)direccion / direccion.magnitude;
+            angle2 = Mathf.Atan2(directionUnit.y, directionUnit.x) * Mathf.Rad2Deg;
+
+            //float angle = Mathf.Atan2(wisher.position.y, wisher.position.x) * Mathf.Rad2Deg;
+            //Quaternion rotacion = Quaternion.AngleAxis(angle, Vector3.forward);
+            Quaternion rotacion = Quaternion.AngleAxis(angle2, Vector3.forward);
+            Instantiate(enemigoBala, transform.position, rotacion);
+        
+        }
     }
 }

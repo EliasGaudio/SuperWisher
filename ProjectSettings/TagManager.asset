@@ -17,6 +17,8 @@ TagManager:
   - MenuOpciones
   - CheckPoint
   - Mision
+  - BalaMala
+  - DificultadGlobalDropdown
   layers:
   - Default
   - TransparentFX
