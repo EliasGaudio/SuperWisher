@@ -19,6 +19,7 @@ TagManager:
   - Mision
   - BalaMala
   - DificultadGlobalDropdown
+  - Cofre
   layers:
   - Default
   - TransparentFX

@@ -18,8 +18,8 @@ public class SoundSlider : MonoBehaviour
     //float volume;
     void Start()
     {
-        mixer.GetFloat(volumeName, out valor);
-        scrollbar.value = (valor + 80 )/ 100;
+        mixer.GetFloat(volumeName,out valor);
+        scrollbar.value =(float) Math.Pow(Math.E, valor/20.0f);
     }
 
     public void UpdateValueOnChange(){
@@ -27,3 +27,6 @@ public class SoundSlider : MonoBehaviour
         mixer.SetFloat(volumeName, Mathf.Log(scrollbar.value + 0.01f) * 20f);
     }
 }
+
+//valor = log10(value) * 20
+//10^(valor/20) = value

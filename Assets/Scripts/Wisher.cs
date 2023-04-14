@@ -18,6 +18,7 @@ public class Wisher : MonoBehaviour
     float velocidadDisparo;
     [SerializeField]float tiempoInvulnerabilidad = 3;
     int vidaWisher;
+    [SerializeField]int balasExtra = 0;
     bool superDisparoCargado;
     [SerializeField]bool invulnerable = false;
     [SerializeField] Animator anim; 
@@ -42,6 +43,7 @@ public class Wisher : MonoBehaviour
         superDisparoCargado = GameManager.Instance.superDisparoCargadoGameManager;
         vidaWisher = GameManager.Instance.vidaWisherGameManager;
         velocidadDisparo = GameManager.Instance.velocidadDisparoGameManager;
+        balasExtra = GameManager.Instance.balasExtraGameManager;
         audioSourceWisher = GetComponent<AudioSource>();
         //s.source.clip = s.clip;
         //s.source.volume = s.volume;
@@ -59,6 +61,7 @@ public class Wisher : MonoBehaviour
         GameManager.Instance.superDisparoCargadoGameManager = superDisparoCargado;
         GameManager.Instance.vidaWisherGameManager = vidaWisher;
         GameManager.Instance.velocidadDisparoGameManager = velocidadDisparo;
+        GameManager.Instance.balasExtraGameManager = balasExtra;
         //Movimiento
         h = Input.GetAxis("Horizontal");    
         v = Input.GetAxis("Vertical");
@@ -79,6 +82,22 @@ public class Wisher : MonoBehaviour
             float angle = Mathf.Atan2(direccionMira.y, direccionMira.x) * Mathf.Rad2Deg;
             Quaternion rotacion = Quaternion.AngleAxis(angle, Vector3.forward);
             Transform clonBala = Instantiate(bala, transform.position, rotacion);
+            for (var balasExtraa = balasExtra; balasExtraa > 0; balasExtraa--)
+            {
+                int dispersor = 1;
+                if (balasExtraa % 2 == 0){
+                    dispersor = -1;
+                }
+                Quaternion rotacion2 = Quaternion.AngleAxis(angle + 10 * balasExtraa * dispersor, Vector3.forward);
+                Transform clonBala2 = Instantiate(bala, transform.position, rotacion2);
+                //Quaternion rotacion3 = Quaternion.AngleAxis(angle - 15 * balasExtraa, Vector3.forward);
+                //Transform clonBala3 = Instantiate(bala, transform.position, rotacion3);
+                if (superDisparoCargado)
+                {
+                    clonBala2.GetComponent<Bala>().superDisparoCargadoBala = true;
+                    //clonBala3.GetComponent<Bala>().superDisparoCargadoBala = true;
+                }
+            }
             if (superDisparoCargado)
             {
                 clonBala.GetComponent<Bala>().superDisparoCargadoBala = true;
@@ -154,9 +173,19 @@ public class Wisher : MonoBehaviour
                     superDisparoCargado = true;
                     UIManager.Instance.UpdateUIBalas(superDisparoCargado);
                     break;
+
+                case PowerUp.PowerUpType.SuperCantidadDeBalas:
+                    balasExtra++;
+                    break;
             }
             Destroy(collision.gameObject, 0.1f);
         }
+        if (collision.CompareTag("Cofre")){
+            if (!collision.GetComponent<Cofre>().abierto){
+                collision.GetComponent<Cofre>().abrirCofre(gameObject.transform);
+            }
+        }
+
         if (collision.CompareTag("CheckPoint"))
         {
             audioSourceWisher.clip = powerUpSonido;

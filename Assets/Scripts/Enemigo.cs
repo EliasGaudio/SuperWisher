@@ -12,8 +12,9 @@ public class Enemigo : MonoBehaviour
     [SerializeField]int recompensa = 100;
     [SerializeField] Animator anim2;
     [SerializeField]bool dispara = false;
-    [SerializeField]float angle;
-    [SerializeField]float angle2;
+    float angle;
+    float angle2;
+    [SerializeField] float rateBlinkeo = 0.001f;
     [SerializeField]int orientacion = 0;
     [SerializeField]AudioClip impacto;
     [SerializeField]AudioSource audioSourceEnemigo;
@@ -26,9 +27,13 @@ public class Enemigo : MonoBehaviour
         GameObject[] spawnPoint = GameObject.FindGameObjectsWithTag("SpawnPoint");
         int randomSpawnPoint = Random.Range(0, spawnPoint.Length);
         transform.position = spawnPoint[randomSpawnPoint].transform.position;
+        if (GameManager.Instance.GlobalDifficulty == 5){
+            dispara = true;
+        }
         if (dispara) {
             StartCoroutine(Disparar());
         }
+        
     }
         // Update is called once per frame
     void Update()
@@ -72,6 +77,7 @@ public class Enemigo : MonoBehaviour
         vida--;
         audioSourceEnemigo.clip = impacto;
         audioSourceEnemigo.Play();
+        StartCoroutine(BlinkearEnemigo());
         if (vida == 0){
             GameManager.Instance.Puntuacion += recompensa;
             Destroy(gameObject, 0.1f);
@@ -88,11 +94,23 @@ public class Enemigo : MonoBehaviour
         yield return new WaitForSeconds(1/velocidadAtaque);
         ataqueListo = true;
     }
+
+    IEnumerator BlinkearEnemigo(){
+        int t = 10;
+        while (t > 0)
+        {
+            gameObject.GetComponentInChildren<SpriteRenderer>().enabled = false;
+            yield return new WaitForSeconds(t * rateBlinkeo);
+            gameObject.GetComponentInChildren<SpriteRenderer>().enabled = true;
+            yield return new WaitForSeconds(t * rateBlinkeo);
+            t--;
+        }
+    }
     
     IEnumerator Disparar(){
         while (true)
         {
-            yield return new WaitForSeconds(Random.Range(2.0f, 3.0f));
+            yield return new WaitForSeconds(Random.Range(2/GameManager.Instance.GlobalDifficulty, 10/GameManager.Instance.GlobalDifficulty));
 
             Vector2 direccion = wisher.position - transform.position;
             //transform.position += (Vector3)direccion * Time.deltaTime * speed;

@@ -167,11 +167,11 @@ MonoBehaviour:
   recompensa: 100
   anim2: {fileID: 1420358352280975604}
   dispara: 0
-  angle: 0
+  rateBlinkeo: 0.003
   orientacion: 0
   impacto: {fileID: 8300000, guid: de9e33dbe81a91342af9c9c7fdbd5680, type: 3}
   audioSourceEnemigo: {fileID: 0}
-  enemigoBala: {fileID: 0}
+  enemigoBala: {fileID: 7586032908327154183, guid: e1dad1e0eb4efcc4cabb6aa83116b3d5, type: 3}
 --- !u!50 &-893471484240759636
 Rigidbody2D:
   serializedVersion: 4
@@ -192,7 +192,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 7
 --- !u!82 &5001540421905719681
 AudioSource:
   m_ObjectHideFlags: 0

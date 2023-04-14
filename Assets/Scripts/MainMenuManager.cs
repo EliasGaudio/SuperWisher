@@ -47,11 +47,8 @@ public class MainMenuManager : MonoBehaviour
 
     void LoadGame(){
         Invoke("PantallaDeCarga", 0.1f);
-        
-        StartCoroutine(LoadYourAsyncScene());
-
+        GameManager.Instance.JugarDeNuevo();
         GameManager.Instance.partidaIniciada = true;
-        GameManager.Instance.ComenzarPartida();
     }
 
 

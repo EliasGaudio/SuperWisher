@@ -38,7 +38,7 @@ public class EnemySpawnController : MonoBehaviour
     IEnumerator SpawnerEnemigoQueDispara(){
         while (true)
         {
-            yield return new WaitForSeconds(5/(velocidadSpawn * GameManager.Instance.difficulty/2));
+            yield return new WaitForSeconds(10/(velocidadSpawn * GameManager.Instance.difficulty/3));
             Instantiate(prefabEnemigo[2]);
         }
     }

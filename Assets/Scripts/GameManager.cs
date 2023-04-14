@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public bool derrotaBool = false; 
     public int puntuacion;
     public int vidaWisherGameManager = 10;
+    public int balasExtraGameManager = 0;
     public float velocidadDisparoGameManager = 1;
     public bool superDisparoCargadoGameManager = false;
     public bool partidaIniciada = false;
@@ -24,8 +25,10 @@ public class GameManager : MonoBehaviour
         set {
             puntuacion = value;
             UIManager.Instance.UpdateUIPuntuacion(puntuacion);
-            if(puntuacion % (2000/GlobalDifficulty) == 0){
-                difficulty++;
+            if(puntuacion % 2000 == 0){
+
+                difficulty += GlobalDifficulty;
+
             }
         }
     }
@@ -49,6 +52,7 @@ public class GameManager : MonoBehaviour
     }
 
     public void ComenzarPartida(){
+        StopAllCoroutines();
         StartCoroutine(CountdownRoutine());
     }
 
@@ -75,6 +79,7 @@ public class GameManager : MonoBehaviour
 
     public void JugarDeNuevo(){
         Time.timeScale = 1;
+        ComenzarPartida();
         Invoke("CargarPrimerNivel", 0.1f);
         
     }
@@ -98,6 +103,7 @@ public class GameManager : MonoBehaviour
         derrotaBool = false; 
         puntuacion = 0;
         vidaWisherGameManager = 10;
+        balasExtraGameManager = 0;
         velocidadDisparoGameManager = 1;
         superDisparoCargadoGameManager = false;
         SceneManager.LoadScene("Juego");
